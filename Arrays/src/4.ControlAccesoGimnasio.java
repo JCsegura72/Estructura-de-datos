@@ -36,9 +36,9 @@ public class ControlAccesoGimnasio {
         }
 
         if (autorizado) {
-            System.out.println("✅ Acceso permitido. Bienvenido al gimnasio.");
+            System.out.println("Acceso permitido. Bienvenido al gimnasio.");
         } else {
-            System.out.println("❌ Acceso denegado. Mensualidad pendiente.");
+            System.out.println("Acceso denegado. Mensualidad pendiente.");
         }
 
         scanner.close();
