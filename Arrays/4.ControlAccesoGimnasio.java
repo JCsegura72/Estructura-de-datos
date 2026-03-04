@@ -1,3 +1,5 @@
+
+import java.util.Scanner;
 public class ControlAccesoGimnasio {
 
 //4. Control de Acceso (Gimnasio)
@@ -7,8 +9,12 @@ public class ControlAccesoGimnasio {
    
     public static void main(String[] args) {
 
+        Scanner scanner = new Scanner(System.in);
+
         int[] sociosActivos = {1001, 1020, 1055, 1100, 1200, 1305, 1500};
-        int codigoIngresado = 1100;
+
+        System.out.print("Digite su código de acceso: ");
+        int codigoIngresado = scanner.nextInt();
 
         int izquierda = 0;
         int derecha = sociosActivos.length - 1;
@@ -31,9 +37,11 @@ public class ControlAccesoGimnasio {
         }
 
         if (autorizado) {
-            System.out.println("Acceso permitido. Bienvenido al gimnasio 💪");
+            System.out.println("✅ Acceso permitido. Bienvenido al gimnasio.");
         } else {
-            System.out.println("Acceso denegado. Mensualidad pendiente.");
+            System.out.println("❌ Acceso denegado. Mensualidad pendiente.");
         }
+
+        scanner.close();
     }
 }
