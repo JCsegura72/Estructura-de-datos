@@ -1,3 +1,4 @@
+
 class Proceso {
     String nombre;
     int pid, tiempo, prioridad;
@@ -10,6 +11,7 @@ class Proceso {
         prioridad = pr;
     }
 }
+
 
 class Planificador {
     Proceso cabeza;
@@ -31,7 +33,10 @@ class Planificador {
     }
 
     void ejecutar(int quantum) {
-        if (cabeza == null) return;
+        if (cabeza == null) {
+            System.out.println("No hay procesos");
+            return;
+        }
 
         Proceso actual = cabeza;
         String orden = "";
@@ -39,11 +44,10 @@ class Planificador {
         while (cabeza != null) {
 
             System.out.println("Ejecutando: " + actual.nombre);
-
             actual.tiempo -= quantum;
 
             if (actual.tiempo <= 0) {
-                System.out.println(actual.nombre + " terminó");
+                System.out.println("Terminó: " + actual.nombre);
                 orden += actual.nombre + " -> ";
 
                 if (actual == cabeza && actual.siguiente == cabeza) {
@@ -51,7 +55,6 @@ class Planificador {
                     break;
                 }
 
-                // eliminar nodo
                 Proceso temp = cabeza;
                 while (temp.siguiente != actual) {
                     temp = temp.siguiente;
@@ -64,24 +67,13 @@ class Planificador {
                 }
 
                 actual = actual.siguiente;
+
             } else {
                 System.out.println("Tiempo restante: " + actual.tiempo);
                 actual = actual.siguiente;
             }
         }
 
-        System.out.println("Orden final: " + orden);
-    }
-}
-
-public class EjercicioRoundRobin {
-    public static void main(String[] args) {
-        Planificador p = new Planificador();
-
-        p.agregar("P1", 1, 10, 1);
-        p.agregar("P2", 2, 15, 2);
-        p.agregar("P3", 3, 8, 1);
-
-        p.ejecutar(5);
+        System.out.println("Orden final: " + orden + "FIN");
     }
 }
